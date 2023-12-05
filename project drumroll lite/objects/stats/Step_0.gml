@@ -51,10 +51,96 @@ repeat(array_length(notes))
 				combo++
 				notes[i].hit=true
 				lanesHit[notes[i].lane]=true
+				var scoreFromHit=105-abs(currentBeat-notes[i].beat)*100
+				scoreFromLastHit=scoreFromHit
+				totalScore+=scoreFromHit
+				if(scoreFromHit<50)
+				{
+					rating="Offbeat"
+				}
+				if(scoreFromHit>=50)
+				{
+					rating="Decent"
+				}
+				if(scoreFromHit>=80)
+				{
+					rating="Good"
+				}
+				if(scoreFromHit>=90)
+				{
+					rating="Great!"
+				}
+				if(scoreFromHit>=95)
+				{
+					rating="Amazing!"
+				}
 			}
 		}
 		#endregion
 	}
 	i++
 }
+
+var laneHitNum=0
+for(var i=0;i<array_length(lanesHit);i++)
+{
+	laneHitNum+=lanesHit[i]
+}
+
+if(laneHitNum>0)
+{
+	for(var i=0;i<laneNumber;i++)
+	{
+		if(!lanesHit[i]&&keyboard_check_pressed(global.lanekeys[i]))
+		{
+			misses+=1
+			combo=0
+			break;
+		}
+	}
+}
+#endregion
+
+#region events
+var defaultWidth=1366
+var defaultHeight=768
+var zoomPercentage=zoom/100
+camera_set_view_pos(view_camera[0],0,0)
+camera_set_view_size(view_camera[0],defaultWidth-(defaultWidth*zoomPercentage),defaultHeight-(defaultHeight*zoomPercentage))
+camera_set_view_pos(view_camera[0],camera_get_view_x(view_camera[0])+((defaultWidth*zoomPercentage)/2),camera_get_view_y(view_camera[0])+((defaultHeight*zoomPercentage)/2))
+camera_set_view_angle(view_camera[0],cameraRotation)
+
+if(abs(cameraRotation)>0)
+{
+	cameraRotation-=cameraRotateRate*sign(cameraRotation)
+}
+if(abs(zoom)>0)
+{
+	zoom-=zoomRate*sign(zoom)
+}
+censorTime--
+
+for(var int=0;int<array_length(events);int++)
+{
+	if(currentBeat>=events[int][0]&&!events[int][2])
+	{
+		if(events[int][1]==0)
+		{
+			zoom=events[int][3]
+			zoomRate=events[int][4]
+		}
+		if(events[int][1]==1)
+		{
+			cameraRotation=events[int][3]*events[int][4]
+			cameraRotateRate=events[int][5]
+		}
+		if(events[int][1]==2)
+		{
+			censorTime=events[int][3]*beatlen
+			censorMax=events[int][3]*beatlen
+		}
+		events[int][2]=true
+	}
+}
+
 #endregion

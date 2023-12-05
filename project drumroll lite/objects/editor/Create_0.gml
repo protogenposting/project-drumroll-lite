@@ -1,6 +1,7 @@
 /// @description Loading all the files
 //setting up values
 notes=[]
+events=[]
 songSelected=song1
 bpm=120
 
@@ -23,6 +24,14 @@ if(_file!="")
 		{
 			//convert old system of notes to new system
 			array_push(notes,create_note(_loaded.eventy[i][0],_loaded.eventy[i][1],0))
+		}
+		if(variable_struct_exists(_loaded,"events"))
+		{
+			for(var i=0;i<array_length(_loaded.events);i++)
+			{
+				//convert old system of notes to new system
+				array_push(events,_loaded.events[i])
+			}
 		}
 	}
 }
