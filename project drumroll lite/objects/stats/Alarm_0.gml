@@ -9,5 +9,5 @@ if(countdown<0)
 }
 else
 {
-	alarm[0]=(60/bpm)*4
+	alarm[0]=(60/bpm)*16
 }

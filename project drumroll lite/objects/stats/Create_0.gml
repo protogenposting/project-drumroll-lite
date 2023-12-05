@@ -46,4 +46,4 @@ leniency=0.2
 
 countdown=3
 
-alarm[0]=(60/bpm)*4
+alarm[0]=(60/bpm)*16
