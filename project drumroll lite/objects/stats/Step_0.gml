@@ -76,9 +76,16 @@ if(countdown<0)
 					{
 						rating="Great!"
 					}
-					if(scoreFromHit>=95)
+					if(scoreFromHit>=100)
 					{
 						rating="Amazing!"
+						var p=part_system_create(prt_hit_normal)
+						part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+					}
+					else
+					{
+						var p=part_system_create(prt_hit_good)
+						part_system_position(p,lanePositions[notes[i].lane],room_height-64)
 					}
 				}
 			}

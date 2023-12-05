@@ -6,7 +6,7 @@ draw_text(room_width/2,32,"misses "+string(misses))
 draw_set_halign(fa_center)
 draw_text(room_width/2,room_height-128,rating)
 draw_text(room_width/2,room_height-128-16,string(scoreFromLastHit))
-var lanePositions=[]
+lanePositions=[]
 var _x=room_width/2-((laneNumber)/2)*64 + 32
 for(var i=0;i<laneNumber;i++)
 {

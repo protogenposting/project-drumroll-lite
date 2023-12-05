@@ -22,11 +22,13 @@
     {"name":"snd_count_3","order":3,"path":"sounds/snd_count_3/snd_count_3.yy",},
     {"name":"snd_count_2","order":2,"path":"sounds/snd_count_2/snd_count_2.yy",},
     {"name":"sort_by_beat","order":5,"path":"scripts/sort_by_beat/sort_by_beat.yy",},
+    {"name":"prt_hit_good","order":1,"path":"particles/prt_hit_good/prt_hit_good.yy",},
     {"name":"editor","order":1,"path":"objects/editor/editor.yy",},
     {"name":"load_file","order":3,"path":"scripts/load_file/load_file.yy",},
     {"name":"snd_count_go","order":4,"path":"sounds/snd_count_go/snd_count_go.yy",},
     {"name":"snd_count_1","order":1,"path":"sounds/snd_count_1/snd_count_1.yy",},
     {"name":"globals","order":1,"path":"scripts/globals/globals.yy",},
+    {"name":"save_file_encode","order":6,"path":"scripts/save_file_encode/save_file_encode.yy",},
     {"name":"save_file","order":2,"path":"scripts/save_file/save_file.yy",},
   ],
 }

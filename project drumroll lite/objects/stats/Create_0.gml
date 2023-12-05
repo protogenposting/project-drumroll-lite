@@ -47,3 +47,13 @@ leniency=0.2
 countdown=3
 
 alarm[0]=(60/bpm)*64
+
+lanePositions=[]
+var _x=room_width/2-((laneNumber)/2)*64 + 32
+for(var i=0;i<laneNumber;i++)
+{
+	array_push(lanePositions,_x)
+	var _y=room_height-64
+	var beatPixelSize=room_height/beatRange
+	_x+=64
+}
