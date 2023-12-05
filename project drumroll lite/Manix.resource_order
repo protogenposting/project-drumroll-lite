@@ -26,6 +26,7 @@
     {"name":"editor","order":1,"path":"objects/editor/editor.yy",},
     {"name":"load_file","order":3,"path":"scripts/load_file/load_file.yy",},
     {"name":"snd_count_go","order":4,"path":"sounds/snd_count_go/snd_count_go.yy",},
+    {"name":"array_has","order":7,"path":"scripts/array_has/array_has.yy",},
     {"name":"snd_count_1","order":1,"path":"sounds/snd_count_1/snd_count_1.yy",},
     {"name":"globals","order":1,"path":"scripts/globals/globals.yy",},
     {"name":"save_file_encode","order":6,"path":"scripts/save_file_encode/save_file_encode.yy",},

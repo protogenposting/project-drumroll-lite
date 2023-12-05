@@ -38,7 +38,11 @@ window_set_fullscreen(true)
 
 
 //u can change these if u like
-laneNumber=4
+laneNumber=editor.rows
+if(laneNumber==8)
+{
+	global.lanekeys=global.lanekeys8
+}
 
 beatRange=4
 

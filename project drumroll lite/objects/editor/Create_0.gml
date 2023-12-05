@@ -4,6 +4,7 @@ notes=[]
 events=[]
 songSelected=song1
 bpm=120
+rows=4
 
 function fnf_convert(){
 	var _file=get_open_filename("fnf chart","level.json")
@@ -14,6 +15,7 @@ function fnf_convert(){
 		bpm=_fnf.song.notes[0].bpm
 		var bfOnly=show_question("only use boyfriend?")
 		var tempNotes=[]
+		var totalRows=get_integer("rows",4)
 		for(var i=0;i<array_length(_fnf.song.notes);i++)
 		{
 			var current_bpm=_fnf.song.notes[i].bpm
@@ -22,17 +24,19 @@ function fnf_convert(){
 			{
 				continue;
 			}
+			var times=[]
 			for(var o=0;o<array_length(current_notes);o++)
 			{
-				var noteLane=current_notes[o][1]
-				if(noteLane>3)
-				{
-					noteLane=irandom(3)
-				}
 				var noteBeat=current_notes[o][0]/1000
+				var noteLane=current_notes[o][1]
+				if(noteLane+1>totalRows)
+				{
+					noteLane-=totalRows
+				}
 				var beatLength=60/bpm
 				noteBeat=noteBeat/beatLength
 				array_push(tempNotes,[noteBeat,noteLane,false,false,false])
+				array_push(times,noteBeat)
 			}
 		}
 		repeat(15)
@@ -42,7 +46,7 @@ function fnf_convert(){
 		show_debug_message(tempNotes)
 		show_message("done!")
 		var newFile=string_delete(_file,string_length(_file)-6,5)+".txt"
-		save_file_encode({dbpm: editor.bpm,eventy: tempNotes},newFile)
+		save_file_encode({dbpm: editor.bpm,eventy: tempNotes, rows: totalRows},newFile)
 		show_message("saved to "+newFile)
 	}
 }
@@ -68,6 +72,10 @@ function game_play()
 			{
 				//convert old system of notes to new system
 				array_push(notes,create_note(_loaded.eventy[i][0],_loaded.eventy[i][1],0))
+			}
+			if(variable_struct_exists(_loaded,"rows"))
+			{
+				rows=_loaded.rows
 			}
 			if(variable_struct_exists(_loaded,"events"))
 			{
