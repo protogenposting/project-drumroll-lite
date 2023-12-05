@@ -43,6 +43,7 @@
     {"id":{"name":"editor","path":"objects/editor/editor.yy",},},
     {"id":{"name":"stats","path":"objects/stats/stats.yy",},},
     {"id":{"name":"load_file","path":"scripts/load_file/load_file.yy",},},
+    {"id":{"name":"snd_count_1","path":"sounds/snd_count_1/snd_count_1.yy",},},
     {"id":{"name":"globals","path":"scripts/globals/globals.yy",},},
     {"id":{"name":"save_file","path":"scripts/save_file/save_file.yy",},},
     {"id":{"name":"rm_play","path":"rooms/rm_play/rm_play.yy",},},

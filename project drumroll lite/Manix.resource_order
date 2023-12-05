@@ -22,6 +22,7 @@
     {"name":"sort_by_beat","order":5,"path":"scripts/sort_by_beat/sort_by_beat.yy",},
     {"name":"editor","order":1,"path":"objects/editor/editor.yy",},
     {"name":"load_file","order":3,"path":"scripts/load_file/load_file.yy",},
+    {"name":"snd_count_1","order":1,"path":"sounds/snd_count_1/snd_count_1.yy",},
     {"name":"globals","order":1,"path":"scripts/globals/globals.yy",},
     {"name":"save_file","order":2,"path":"scripts/save_file/save_file.yy",},
   ],

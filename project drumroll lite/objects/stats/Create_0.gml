@@ -24,8 +24,6 @@ cameraRotateRate=0
 
 censorTime=0
 censorMax=0
-//play the audio
-current_audio=audio_play_sound(editor.songSelected,1000,false)
 
 //get the notes
 notes=editor.notes
@@ -46,3 +44,6 @@ beatRange=4
 
 leniency=0.2
 
+countdown=3
+
+alarm[0]=(60/bpm)*4
