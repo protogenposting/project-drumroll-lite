@@ -28,7 +28,7 @@ for(var i=0;i<array_length(shownNotes);i++)
 	}
 	if(notes[shownNotes[i]].type==1)
 	{
-		draw_sprite(spr_note,0,_x,_y)
+		draw_sprite(spr_note_bad,0,_x,_y)
 	}
 }
 if(censorTime>0)

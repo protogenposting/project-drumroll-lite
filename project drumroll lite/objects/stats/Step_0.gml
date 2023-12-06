@@ -60,6 +60,7 @@ if(countdown<0)
 				{
 					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
 					{
+						audio_play_sound(snd_hitsound,1000,false)
 						combo++
 						notes[i].hit=true
 						lanesHit[notes[i].lane]=true
@@ -98,7 +99,9 @@ if(countdown<0)
 				{
 					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])/*&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100 uncomment this and remove this text to allow this note to be hit in botplay*/)
 					{
-						
+						misses+=1
+						notes[i].hit=true
+						combo=0
 					}
 				}
 			}
