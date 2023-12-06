@@ -34,7 +34,7 @@ shownNotes=[]
 array_sort(notes,sort_by_beat)
 
 //turn on fullscreen
-window_set_fullscreen(true)
+//window_set_fullscreen(true)
 
 
 //u can change these if u like

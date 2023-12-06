@@ -52,12 +52,12 @@ if(countdown<0)
 			#region hitting notes
 			if(notes[i].beat<currentBeat+leniency&&notes[i].beat>currentBeat-leniency)
 			{
-				if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane])
+				var scoreFromHit=105-abs(currentBeat-notes[i].beat)*100
+				if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
 				{
 					combo++
 					notes[i].hit=true
 					lanesHit[notes[i].lane]=true
-					var scoreFromHit=105-abs(currentBeat-notes[i].beat)*100
 					scoreFromLastHit=scoreFromHit
 					totalScore+=scoreFromHit
 					if(scoreFromHit<50)
