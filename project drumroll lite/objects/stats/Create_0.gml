@@ -15,6 +15,7 @@ combo=0
 rating=""
 totalScore=0
 scoreFromLastHit=0
+accuracy=[]
 
 zoom=1
 zoomRate=0

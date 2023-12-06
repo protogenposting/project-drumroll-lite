@@ -49,6 +49,7 @@ if(countdown<0)
 					misses+=1
 					notes[i].hit=true
 					combo=0
+					array_push(accuracy,0)
 				}
 			}
 			#endregion
@@ -93,6 +94,7 @@ if(countdown<0)
 							var p=part_system_create(prt_hit_good)
 							part_system_position(p,lanePositions[notes[i].lane],room_height-64)
 						}
+						array_push(accuracy,scoreFromHit)
 					}
 				}
 				if(notes[i].type==1)
@@ -116,18 +118,16 @@ if(countdown<0)
 		laneHitNum+=lanesHit[i]
 	}
 
-	/*if(laneHitNum>0)
+	if(laneHitNum>0)
 	{
 		for(var i=0;i<laneNumber;i++)
 		{
 			if(!lanesHit[i]&&keyboard_check_pressed(global.lanekeys[i]))
 			{
-				misses+=1
-				combo=0
-				break;
+				array_push(accuracy,50)
 			}
 		}
-	}*/
+	}
 	#endregion
 
 	#region events

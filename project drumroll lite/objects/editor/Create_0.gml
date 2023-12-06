@@ -7,6 +7,8 @@ bpm=120
 rows=4
 botplay=false
 
+game_set_speed(360,gamespeed_fps)
+
 function fnf_convert(){
 	var _file=get_open_filename("fnf chart","level.json")
 	if(_file!=""&&file_exists(_file))

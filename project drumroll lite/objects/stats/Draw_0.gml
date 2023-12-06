@@ -1,5 +1,17 @@
 /// @description Insert description here
 // You can write your code in this editor
+if(array_length(accuracy)>0)
+{
+	var currentAccuracy=accuracy[0]
+	var i=1
+	repeat(array_length(accuracy)-1)
+	{
+		currentAccuracy+=accuracy[i]
+		i++
+	}
+	currentAccuracy/=array_length(accuracy)
+	draw_text(room_width/2,48,"accuracy "+string(currentAccuracy)+"%")
+}
 draw_text(room_width/2,0,"combo "+string(combo))
 draw_text(room_width/2,16,"score "+string(totalScore))
 draw_text(room_width/2,32,"misses "+string(misses))
