@@ -170,8 +170,7 @@ if(countdown<0)
 			}
 			if(events[int][1]==3)
 			{
-				drawStyle=events[int][3]*beatlen
-				show_message(drawStyle)
+				drawStyle=events[int][3]
 			}
 			events[int][2]=true
 		}
