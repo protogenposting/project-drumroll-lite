@@ -1,5 +1,7 @@
 /// @description Setup
 
+drawStyle=0
+
 //im not exactly sure what formula remap is but it works :)
 function remap(value, left1, right1, left2, right2) {
   return left2 + (value - left1) * (right2 - left2) / (right1 - left1);
@@ -55,10 +57,7 @@ alarm[0]=(60/bpm)*64
 
 lanePositions=[]
 var _x=room_width/2-((laneNumber)/2)*64 + 32
-for(var i=0;i<laneNumber;i++)
+for(var i=0;i<laneNumber+4;i++)
 {
-	array_push(lanePositions,_x)
-	var _y=room_height-64
-	var beatPixelSize=room_height/beatRange
-	_x+=64
+	array_push(lanePositions,[0,0])
 }

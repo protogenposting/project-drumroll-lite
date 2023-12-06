@@ -31,13 +31,13 @@ if(countdown<0)
 	}
 
 	var i=0
-	var _maxBeat=barPercentage-beatRange
+	var _maxBeat=barPercentage+beatRange
 	repeat(array_length(notes))
 	{
 		if(!notes[i].hit) //detect if current note was hit
 		{
 			//if note is in the range, add it to the shownNotes list
-			if(notes[i].beat>_maxBeat&&notes[i].beat+leniency>currentBeat)
+			if(notes[i].beat>currentBeat&&notes[i].beat<_maxBeat)
 			{
 				array_push(shownNotes,i)
 			}
@@ -87,12 +87,12 @@ if(countdown<0)
 						{
 							rating="Amazing!"
 							var p=part_system_create(prt_hit_normal)
-							part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+							part_system_position(p,lanePositions[notes[i].lane][0],lanePositions[notes[i].lane][1])
 						}
 						else
 						{
 							var p=part_system_create(prt_hit_good)
-							part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+							part_system_position(p,lanePositions[notes[i].lane][0],lanePositions[notes[i].lane][1])
 						}
 						array_push(accuracy,scoreFromHit)
 					}
@@ -167,6 +167,10 @@ if(countdown<0)
 			{
 				censorTime=events[int][3]*beatlen
 				censorMax=events[int][3]*beatlen
+			}
+			if(events[int][1]==3)
+			{
+				drawStyle=events[int][3]*beatlen
 			}
 			events[int][2]=true
 		}
