@@ -12,7 +12,7 @@ function fnf_convert(){
 	{
 		var _fnf=load_file(_file)
 		show_message("song length: "+string(array_length(_fnf.song.notes)))
-		bpm=_fnf.song.notes[0].bpm
+		bpm=_fnf.song.notes[1].bpm
 		var bfOnly=show_question("only use boyfriend?")
 		var tempNotes=[]
 		var totalRows=get_integer("rows",4)
