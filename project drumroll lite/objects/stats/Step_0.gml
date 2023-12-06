@@ -116,7 +116,7 @@ if(countdown<0)
 		laneHitNum+=lanesHit[i]
 	}
 
-	if(laneHitNum>0)
+	/*if(laneHitNum>0)
 	{
 		for(var i=0;i<laneNumber;i++)
 		{
@@ -127,7 +127,7 @@ if(countdown<0)
 				break;
 			}
 		}
-	}
+	}*/
 	#endregion
 
 	#region events
