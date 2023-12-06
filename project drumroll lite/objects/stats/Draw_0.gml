@@ -19,8 +19,17 @@ for(var i=0;i<laneNumber;i++)
 }
 for(var i=0;i<array_length(shownNotes);i++)
 {
+	var _x=lanePositions[notes[shownNotes[i]].lane]
 	var _y=((barPercentage-notes[shownNotes[i]].beat)/beatRange)*room_height
-	draw_sprite(spr_note,0,lanePositions[notes[shownNotes[i]].lane],room_height+_y-64)
+	_y=room_height+_y-64
+	if(notes[shownNotes[i]].type==0)
+	{
+		draw_sprite(spr_note,0,_x,_y)
+	}
+	if(notes[shownNotes[i]].type==1)
+	{
+		draw_sprite(spr_note,0,_x,_y)
+	}
 }
 if(censorTime>0)
 {

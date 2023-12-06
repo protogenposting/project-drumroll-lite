@@ -15,15 +15,30 @@ function fnf_convert(){
 		show_message("song length: "+string(array_length(_fnf.song.notes)))
 		bpm=_fnf.song.notes[1].bpm
 		var bfOnly=show_question("only use boyfriend?")
+		var opponentAlt=false
+		var altNoteId=0
+		if(!bfOnly)
+		{
+			opponentAlt=show_question("make opponent use different notes?")
+			if(opponentAlt)
+			{
+				altNoteId=get_integer("note id",1)
+			}
+		}
 		var tempNotes=[]
 		var totalRows=get_integer("rows",4)
 		for(var i=0;i<array_length(_fnf.song.notes);i++)
 		{
+			var type=0
 			var current_bpm=_fnf.song.notes[i].bpm
 			var current_notes=_fnf.song.notes[i].sectionNotes
 			if(bfOnly&&!_fnf.song.notes[i].mustHitSection)
 			{
 				continue;
+			}
+			if(opponentAlt&&!_fnf.song.notes[i].mustHitSection)
+			{
+				type=altNoteId
 			}
 			var times=[]
 			for(var o=0;o<array_length(current_notes);o++)
@@ -36,7 +51,7 @@ function fnf_convert(){
 				}
 				var beatLength=60/bpm
 				noteBeat=noteBeat/beatLength
-				array_push(tempNotes,[noteBeat,noteLane,false,false,false])
+				array_push(tempNotes,[noteBeat,noteLane,false,false,false,type])
 				array_push(times,noteBeat)
 			}
 		}
@@ -72,7 +87,12 @@ function game_play()
 			for(var i=0;i<array_length(_loaded.eventy);i++)
 			{
 				//convert old system of notes to new system
-				array_push(notes,create_note(_loaded.eventy[i][0],_loaded.eventy[i][1],0))
+				var _note=create_note(_loaded.eventy[i][0],_loaded.eventy[i][1],0)
+				if(array_length(_loaded.eventy[i])>5)
+				{
+					_note.type=_loaded.eventy[i][5]
+				}
+				array_push(notes,_note)
 			}
 			if(variable_struct_exists(_loaded,"rows"))
 			{

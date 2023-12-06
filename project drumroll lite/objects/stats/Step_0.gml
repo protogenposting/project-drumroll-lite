@@ -44,48 +44,61 @@ if(countdown<0)
 			#region missing notes
 			if(notes[i].beat+leniency<currentBeat)
 			{
-				misses+=1
-				notes[i].hit=true
-				combo=0
+				if(notes[i].type==0)
+				{
+					misses+=1
+					notes[i].hit=true
+					combo=0
+				}
 			}
 			#endregion
 			#region hitting notes
 			if(notes[i].beat<currentBeat+leniency&&notes[i].beat>currentBeat-leniency)
 			{
 				var scoreFromHit=105-abs(currentBeat-notes[i].beat)*100
-				if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
+				if(notes[i].type==0)
 				{
-					combo++
-					notes[i].hit=true
-					lanesHit[notes[i].lane]=true
-					scoreFromLastHit=scoreFromHit
-					totalScore+=scoreFromHit
-					if(scoreFromHit<50)
+					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
 					{
-						rating="Offbeat"
+						combo++
+						notes[i].hit=true
+						lanesHit[notes[i].lane]=true
+						scoreFromLastHit=scoreFromHit
+						totalScore+=scoreFromHit
+						if(scoreFromHit<50)
+						{
+							rating="Offbeat"
+						}
+						if(scoreFromHit>=50)
+						{
+							rating="Decent"
+						}
+						if(scoreFromHit>=80)
+						{
+							rating="Good"
+						}
+						if(scoreFromHit>=90)
+						{
+							rating="Great!"
+						}
+						if(scoreFromHit>=100)
+						{
+							rating="Amazing!"
+							var p=part_system_create(prt_hit_normal)
+							part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+						}
+						else
+						{
+							var p=part_system_create(prt_hit_good)
+							part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+						}
 					}
-					if(scoreFromHit>=50)
+				}
+				if(notes[i].type==1)
+				{
+					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])/*&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100 uncomment this and remove this text to allow this note to be hit in botplay*/)
 					{
-						rating="Decent"
-					}
-					if(scoreFromHit>=80)
-					{
-						rating="Good"
-					}
-					if(scoreFromHit>=90)
-					{
-						rating="Great!"
-					}
-					if(scoreFromHit>=100)
-					{
-						rating="Amazing!"
-						var p=part_system_create(prt_hit_normal)
-						part_system_position(p,lanePositions[notes[i].lane],room_height-64)
-					}
-					else
-					{
-						var p=part_system_create(prt_hit_good)
-						part_system_position(p,lanePositions[notes[i].lane],room_height-64)
+						
 					}
 				}
 			}
