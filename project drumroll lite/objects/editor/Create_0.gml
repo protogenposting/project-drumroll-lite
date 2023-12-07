@@ -15,7 +15,7 @@ function fnf_convert(){
 	{
 		var _fnf=load_file(_file)
 		show_message("song length: "+string(array_length(_fnf.song.notes)))
-		bpm=_fnf.song.notes[1].bpm
+		bpm=_fnf.song.bpm
 		var bfOnly=show_question("only use boyfriend?")
 		var opponentAlt=false
 		var altNoteId=0
@@ -32,7 +32,14 @@ function fnf_convert(){
 		for(var i=0;i<array_length(_fnf.song.notes);i++)
 		{
 			var type=0
-			var current_bpm=_fnf.song.notes[i].bpm
+			if(variable_struct_exists(_fnf.song.notes[i],"bpm"))
+			{
+				var current_bpm=_fnf.song.notes[i].bpm
+			}
+			else
+			{
+				var current_bpm=bpm
+			}
 			var current_notes=_fnf.song.notes[i].sectionNotes
 			if(bfOnly&&!_fnf.song.notes[i].mustHitSection)
 			{
