@@ -1,5 +1,11 @@
 /// @description Insert description here
 // You can write your code in this editor
+function draw_note_0(_x,_y){
+	draw_sprite(spr_note,0,_x,_y)
+}
+function draw_note_1(_x,_y){
+	draw_sprite(spr_note_bad,0,_x,_y)
+}
 function draw_ui(){
 	if(array_length(accuracy)>0)
 	{
@@ -40,11 +46,11 @@ function draw_screen_normal(){
 		_y=room_height+_y-64
 		if(notes[shownNotes[i]].type==0)
 		{
-			draw_sprite(spr_note,0,_x,_y)
+			draw_note_0(_x,_y)
 		}
 		if(notes[shownNotes[i]].type==1)
 		{
-			draw_sprite(spr_note_bad,0,_x,_y)
+			draw_note_1(_x,_y)
 		}
 	}
 }
@@ -68,11 +74,11 @@ function draw_screen_circle(){
 		var _y=lanePositions[notes[shownNotes[i]].lane][1]-lengthdir_y((barPercentage-notes[shownNotes[i]].beat)/beatRange*1024,(barPercentage-notes[shownNotes[i]].beat)/beatRange*90-180*isEven)
 		if(notes[shownNotes[i]].type==0)
 		{
-			draw_sprite(spr_note,0,_x,_y)
+			draw_note_0(_x,_y)
 		}
 		if(notes[shownNotes[i]].type==1)
 		{
-			draw_sprite(spr_note_bad,0,_x,_y)
+			draw_note_1(_x,_y)
 		}
 	}
 }
@@ -96,11 +102,11 @@ function draw_screen_undyne(){
 		var _y=lanePositions[notes[shownNotes[i]].lane][1]
 		if(notes[shownNotes[i]].type==0)
 		{
-			draw_sprite(spr_note,0,_x,_y)
+			draw_note_0(_x,_y)
 		}
 		if(notes[shownNotes[i]].type==1)
 		{
-			draw_sprite(spr_note_bad,0,_x,_y)
+			draw_note_1(_x,_y)
 		}
 	}
 }
@@ -138,13 +144,13 @@ function draw_screen_flash(){
 			var _y=((barPercentage-notes[shownNotes[i]].beat)/beatRange)*room_height + offset + irandom_range(-5,5)
 			_y=room_height+_y-64
 			if(notes[shownNotes[i]].type==0)
-			{
-				draw_sprite(spr_note,0,_x,_y)
-			}
-			if(notes[shownNotes[i]].type==1)
-			{
-				draw_sprite(spr_note_bad,0,_x,_y)
-			}
+		{
+			draw_note_0(_x,_y)
+		}
+		if(notes[shownNotes[i]].type==1)
+		{
+			draw_note_1(_x,_y)
+		}
 			offset+=128
 		}
 	}
