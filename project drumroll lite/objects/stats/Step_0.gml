@@ -1,4 +1,4 @@
-/// @description Insert description here
+ /// @description Insert description here
 // You can write your code in this editor
 if(countdown<0)
 {
@@ -43,12 +43,14 @@ if(countdown<0)
 
 	var i=0
 	var _maxBeat=barPercentage+beatRange
+	var _minBeat=barPercentage-beatRange
+	array_sort(notes,sort_by_beat)
 	repeat(array_length(notes))
 	{
 		if(!notes[i].hit) //detect if current note was hit
 		{
 			//if note is in the range, add it to the shownNotes list
-			if(notes[i].beat>currentBeat&&notes[i].beat<_maxBeat)
+			if(notes[i].beat>_minBeat&&notes[i].beat<_maxBeat)
 			{
 				array_push(shownNotes,i)
 			}
@@ -65,12 +67,12 @@ if(countdown<0)
 			}
 			#endregion
 			#region hitting notes
-			if(notes[i].beat<currentBeat+leniency&&notes[i].beat>currentBeat-leniency)
+			if(notes[i].beat<currentBeat+leniency&&notes[i].beat>currentBeat-leniency&&!lanesHit[notes[i].lane])
 			{
 				var scoreFromHit=105-abs(currentBeat-notes[i].beat)*100
 				if(notes[i].type==0)
 				{
-					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
+					if(!editor.botplay&&keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100&&!lanesHit[notes[i].lane])
 					{
 						if(editor.botplay)
 						{
