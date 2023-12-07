@@ -2,6 +2,17 @@
 // You can write your code in this editor
 if(countdown<0)
 {
+	if(editor.botplay)
+	{
+		for(var i=0;i<array_length(global.lanekeys);i++)
+		{
+			botKeyTime[i]--
+			if(botKeyTime[i]<=0)
+			{
+				keyboard_key_release(global.lanekeys[i])
+			}
+		}
+	}
 	if(!audio_is_playing(editor.songSelected))
 	{
 		current_audio=audio_play_sound(editor.songSelected,1000,false)
@@ -61,6 +72,11 @@ if(countdown<0)
 				{
 					if(keyboard_check_pressed(global.lanekeys[notes[i].lane])&&!lanesHit[notes[i].lane]||editor.botplay&&scoreFromHit>=100)
 					{
+						if(editor.botplay)
+						{
+							keyboard_key_press(global.lanekeys[notes[i].lane])
+							botKeyTime[notes[i].lane]=15
+						}
 						audio_play_sound(snd_hitsound,1000,false)
 						combo++
 						notes[i].hit=true
