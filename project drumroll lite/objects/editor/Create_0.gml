@@ -7,8 +7,11 @@ bpm=120
 rows=4
 botplay=false
 
+//change fps to 120
 game_set_speed(120,gamespeed_fps)
 
+/// @function                fnf_convert()
+/// @description             Used to convert a Friday Night Funkin chart to a Project Drumroll chart.
 function fnf_convert(){
 	var _file=get_open_filename("fnf chart","level.json")
 	if(_file!=""&&file_exists(_file))
@@ -75,24 +78,31 @@ function fnf_convert(){
 		show_message("saved to "+newFile)
 	}
 }
-
+/// @function                game_play()
+/// @description             Asks the player for a Project Drumroll chart file and a .ogg audio file then allows the player to play the level.
 function game_play()
 {
 	#region load audio file
+	//get the file
 	var _audio=get_open_filename("audio files","level.ogg")
+	//load the file
 	if(_audio!=""&&file_exists(_audio))
 	{
 		songSelected=audio_create_stream(_audio)
 	}
 	#endregion
 	#region load level file
+	//get the file
 	var _file=get_open_filename("project drumroll files","level.txt")
 	if(_file!="")
 	{
+		//load and decode the file
 		var _loaded=load_file_decode(_file)
 		if(_loaded!=false)
 		{
+			//change the bpm to the file's default bpm (named dbpm because i was dumb lol)
 			bpm=_loaded.dbpm
+			//convert all of the Project Drumroll note arrays into more readable Project Drumroll note structs.
 			for(var i=0;i<array_length(_loaded.eventy);i++)
 			{
 				//convert old system of notes to new system
@@ -103,10 +113,12 @@ function game_play()
 				}
 				array_push(notes,_note)
 			}
+			//if it has a definition of how many rows are in the file, change the rows to that
 			if(variable_struct_exists(_loaded,"rows"))
 			{
 				rows=_loaded.rows
 			}
+			//if it has events, add teh events
 			if(variable_struct_exists(_loaded,"events"))
 			{
 				for(var i=0;i<array_length(_loaded.events);i++)
@@ -117,6 +129,6 @@ function game_play()
 			}
 		}
 	}
+	#endregion
 	room_goto(rm_play)
 }
-#endregion
