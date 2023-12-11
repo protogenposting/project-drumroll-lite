@@ -17,6 +17,8 @@ function fnf_convert(){
 	if(_file!=""&&file_exists(_file))
 	{
 		var _fnf=load_file(_file)
+		
+		#region getting input about the chart from the player
 		show_message("song length: "+string(array_length(_fnf.song.notes)))
 		bpm=_fnf.song.bpm
 		var bfOnly=show_question("only use boyfriend?")
@@ -30,8 +32,11 @@ function fnf_convert(){
 				altNoteId=get_integer("note id",1)
 			}
 		}
-		var tempNotes=[]
 		var totalRows=get_integer("rows",4)
+		#endregion
+		
+		#region converting notes to project drumroll notes
+		var tempNotes=[]
 		for(var i=0;i<array_length(_fnf.song.notes);i++)
 		{
 			var type=0
@@ -67,6 +72,8 @@ function fnf_convert(){
 				array_push(times,noteBeat)
 			}
 		}
+		#endregion
+		
 		repeat(15)
 		{
 			show_debug_message("")
@@ -91,6 +98,7 @@ function game_play()
 		songSelected=audio_create_stream(_audio)
 	}
 	#endregion
+	
 	#region load level file
 	//get the file
 	var _file=get_open_filename("project drumroll files","level.txt")

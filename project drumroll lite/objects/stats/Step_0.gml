@@ -21,6 +21,7 @@ if(countdown<0)
 	{
 		current_audio=audio_play_sound(editor.songSelected,1000,false)
 	}
+	
 	#region get the current beat
 	var barperlast=barPercentage
 	var beatlen=60/bpm
@@ -70,6 +71,7 @@ if(countdown<0)
 				}
 			}
 			#endregion
+			
 			#region hitting notes
 			if(notes[i].beat<currentBeat+leniency&&notes[i].beat>currentBeat-leniency&&!lanesHit[notes[i].lane])
 			{
