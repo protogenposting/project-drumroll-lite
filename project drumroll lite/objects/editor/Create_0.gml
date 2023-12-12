@@ -8,7 +8,7 @@ rows=4
 botplay=false
 
 //change fps to 120
-game_set_speed(120,gamespeed_fps)
+game_set_speed(144,gamespeed_fps)
 
 /// @function                fnf_convert()
 /// @description             Used to convert a Friday Night Funkin chart to a Project Drumroll chart.
