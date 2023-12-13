@@ -10,6 +10,75 @@ botplay=false
 //change fps to 120
 game_set_speed(144,gamespeed_fps)
 
+function download_level(){
+	var _string=""
+	
+	var _levelName=get_string("level name","")
+	var _userName=get_string("username","")
+	for(var i=0;i<1000;i++)
+	{
+		try{
+			function onAttemptFunction(Success, ErrorMessage, RetryNumber){
+				//show_message(ErrorMessage)
+			}
+			var _data=GJDataFetch(_levelName+"@"+_userName+"_"+string(i),false,onAttemptFunction,5)
+			show_debug_message(string(_data))
+			_string=_string+string(_data)
+			show_debug_message(i)
+		}
+		catch(e)
+		{
+			//show_debug_message(e)
+			continue;
+		}
+	}
+	show_message(_string)
+	_string=base64_decode(_string)
+	show_message(_string)
+	var str=json_parse(_string)
+	var _level=get_open_filename("project drumroll files","level.txt")
+	save_file_encode(str,_level)
+}
+
+function upload_level(){
+	var _strings=[]
+	
+	var _file=get_open_filename("project drumroll files","level.txt")
+	var _buffer = buffer_load(_file)
+	var _string = buffer_read(_buffer,buffer_string)
+	buffer_delete(_buffer)
+	
+	while(string_length(_string)>=200)
+	{
+		var _str=string_copy(_string,1,200)
+		_string=string_delete(_string,1,200)
+		array_push(_strings,_str)
+	}
+	
+	/*_file=get_open_filename(".ogg files","level.ogg")
+	_buffer = buffer_load(_file)
+	var _string2 = buffer_read(_buffer,buffer_string)
+	buffer_delete(_buffer)*/
+	
+	_string=base64_decode(_string)
+	show_debug_message(_string)
+	var _levelName=get_string("level name","")
+	var _userName=get_string("username","")
+	if(_userName!=""&&_levelName!="")
+	{
+		function onAttemptFunction(Success, ErrorMessage, RetryNumber){
+			//show_message(ErrorMessage)
+		}
+		var i=0
+		repeat(array_length(_strings))
+		{
+			GJDataSet(_levelName+"@"+_userName+"_"+string(i),_strings[i],false,onAttemptFunction,1)
+			i++
+		}
+		//GJDataSet(_levelName+"@"+_userName+"_song",_string2,false,onAttemptFunction,1)
+	}
+}
+
 /// @function                fnf_convert()
 /// @description             Used to convert a Friday Night Funkin chart to a Project Drumroll chart.
 function fnf_convert(){
